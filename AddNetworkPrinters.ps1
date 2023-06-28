@@ -7,7 +7,7 @@ foreach ($Printer in $Printers) {
     Invoke-Command -ComputerName $RemoteComputer -ScriptBlock {
         Param($prt)
         Write-Output "Adding $prt"
-        iex "RUNDLL32 PRINTUI.DLL,PrintUIEntry /ga /n""$prt"""
+        Invoke-Expression "RUNDLL32 PRINTUI.DLL,PrintUIEntry /ga /n""$prt"""
     } -ArgumentList $prt
 }
 Start-Sleep -Seconds 10
