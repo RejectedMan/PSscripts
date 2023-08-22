@@ -55,7 +55,8 @@ If (($FilteredUsers | Measure-Object).count -gt 0) {
    
         #Remove from all groups
         if (($User.MemberOf).Count -gt 0) {
-            Get-ADUser -server $ADserver -Identity $User.SamAccountName -Properties MemberOf  | ForEach-Object { $_.MemberOf | Remove-ADGroupMember -Members $_.DistinguishedName -Confirm:$false }
+            Get-ADUser -server $ADserver -Identity $User.SamAccountName -Properties MemberOf  | 
+            ForEach-Object { $_.MemberOf | Remove-ADGroupMember -server $ADserver -Members $_.DistinguishedName -Confirm:$false }
             Write-Output (((get-date).ToString("yyyy.MM.dd hh:mm:ss")) + " Removing from all groups...") >> $LogFile
         }
 
@@ -82,8 +83,7 @@ If (($FilteredUsers | Measure-Object).count -gt 0) {
     } 
     Write-Output (((get-date).ToString("yyyy.MM.dd hh:mm:ss")) + " END PROCESS") >> $LogFile
 
-    $body = $body + "`n`nTotal number of Users: " + $FilteredUsers.count + "`n`nLogs are in attachment"
+    $body = $body + "`n`nTotal number of Users: " + ($FilteredUsers | Measure-Object).count + "`n`nLogs are in attachment"
     # Sent message with attachment
     Send-MailMessage -From $from -To $to -Subject $subject -Body $body -SmtpServer $smtpServer -Attachments $LogFile
 }
-
