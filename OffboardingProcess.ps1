@@ -13,7 +13,7 @@ $ADserver = "dc.yourdomain.com"
 $PassCharset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+'   ## Password charset
 $PassLength = 28                                                                                ## Password length
 $OffboardingOU = "OU=Offboarding,OU=Users,DC=yourdomain,DC=com"                                 ## OU with offboarding users
-$dtf = "yyyy.MM.dd hh:mm:ss" 
+$dtf = "yyyy.MM.dd hh:mm:ss"                                                                    ## Date Time Format
 #endregion
 
 #region SMTP settings
