@@ -13,10 +13,10 @@ Write-Host  "Active Sessions      : " $ActiveSessions.Count
 Write-Host  "Disconnected Sessions: " $DisconnectedUsers.Count
 
 #Confirm process of logout
-$ConfirmAnswer = Read-Host "Do you want to Logout sessions? (Yes/No)"
+$ConfirmAnswer = Read-Host "Do you want to do logout for sessions? (Yes/No)"
 
 if ($ConfirmAnswer -eq "Yes" -or $ConfirmAnswer -eq "yes" -or $ConfirmAnswer -eq "Y" -or $ConfirmAnswer -eq "y") {
-    $AllOrDisc = Read-Host "Do you want to logout ALL exist sessions or DISCONNECTED only? ( input A for ALL (Default)/ input D for DISCONNECTED only)"
+    $AllOrDisc = Read-Host "Do you want to do logout for ALL exist sessions or DISCONNECTED only? ( input A for ALL (Default)/ input D for DISCONNECTED only)"
     if ($AllOrDisc -eq "D" -or $AllOrDisc -eq "d") {
         $SessionList = $DisconnectedUsers
         Write-host "Logout disconnected sessions..."
