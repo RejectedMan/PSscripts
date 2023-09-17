@@ -25,7 +25,7 @@ if (Test-Connection $Computer -Count 1 -Quiet) {
             # Set registry value
             Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\' -Name "fDenyTSConnections" -Value $RegValue
             if ($? -eq $false) { $ErrCount++ } #check error
-            # swicth FW rule
+            # switch FW rule
             if ($RegValue -eq 0) { Enable-NetFirewallRule -DisplayGroup "Remote Desktop" } else { Disable-NetFirewallRule -DisplayGroup "Remote Desktop" }
             if ($? -eq $false) { $ErrCount++ } #check error
             If ($ErrCount -gt 0) { write-host "Operation failed" } else { write-host "RDP was"$Action"d" } # Output results
