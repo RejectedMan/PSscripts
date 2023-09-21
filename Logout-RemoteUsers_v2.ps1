@@ -15,13 +15,13 @@ Write-Host  "Disconnected Sessions: " $DisconnectedUsers.Count
 #Confirm process of logout
 $ConfirmAnswer = Read-Host "Do you want to do logout for sessions? (Yes/No)"
 
-if ($ConfirmAnswer -eq "Yes" -or $ConfirmAnswer -eq "yes" -or $ConfirmAnswer -eq "Y" -or $ConfirmAnswer -eq "y") {
+if ($ConfirmAnswer.ToLower() -eq "yes" -or $ConfirmAnswer.ToLower() -eq "y") {
     $AllOrDisc = Read-Host "Do you want to do logout for ALL exist sessions or DISCONNECTED only? ( input A for ALL (Default)/ input D for DISCONNECTED only)"
-    if ($AllOrDisc -eq "D" -or $AllOrDisc -eq "d") {
+    if ($AllOrDisc.ToLower() -eq "d") {
         $SessionList = $DisconnectedUsers
         Write-host "Logout disconnected sessions..."
     }
-    elseif ($AllOrDisc -eq "A" -or $AllOrDisc -eq "A" -or $AllOrDisc -eq "") {
+    elseif ($AllOrDisc.ToLower() -eq "a" -or $AllOrDisc -eq "") {
         $SessionList = $ActiveSessions
         Write-host "Logout all sessions..."
     }
@@ -44,7 +44,7 @@ if ($ConfirmAnswer -eq "Yes" -or $ConfirmAnswer -eq "yes" -or $ConfirmAnswer -eq
     Write-Host "Disconnected : "$LogoffCount" sessions"
     Write-Host "Errors : "$ErrCount
 }
-elseif ($ConfirmAnswer -eq "No" -or $ConfirmAnswer -eq "no" -or $ConfirmAnswer -eq "N" -or $ConfirmAnswer -eq "n") {
+elseif ($ConfirmAnswer.ToLower() -eq "no" -or $ConfirmAnswer.ToLower() -eq "n" ) {
     Write-Host "Operation was canceled"
 }
 else {
