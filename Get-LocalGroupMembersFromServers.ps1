@@ -9,7 +9,8 @@ $CSVpath = "C:\Temp\LocalGroupMembers.csv"                              ## Path 
 $MemberList = @()       ## Array for result
 $ErrorList = @()
 # Get computer list
-$ServerList = Get-ADComputer -Filter { OperatingSystem -like "Windows*"  -and Enabled -eq $true } -SearchBase $OUpath | Where-Object { $_.Name -notmatch $ExceptionNameWords }
+$ServerList = Get-ADComputer -Filter { OperatingSystem -like "Windows*"  -and Enabled -eq $true } -SearchBase $OUpath 
+if ($ExceptionNameWords -ne "") { $ServerList = $ServerList | Where-Object { $_.Name -notmatch $ExceptionNameWords } }
 # Get data from each server
 foreach ($server in $ServerList) {
     ## test connection
