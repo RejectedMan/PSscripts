@@ -1,7 +1,6 @@
-#
-# Getting information from Logs/Security about AD Croup changing
-# and sending it to email
-#
+##
+## Getting information from Logs/Security about AD Croup changing and sending it to email
+##
 
 $smtpServer = "smtp.yourdomain.com"                                         # SMTP-server DNS-name/IP-address
 $from = "AD Group Changing report<alert@yourdomain.com>"                   # Sender email address
@@ -29,7 +28,7 @@ ForEach-Object {
 $body = "`n<h1>" + $env:COMPUTERNAME + "</h1>`n`n"
 $body += $OutputData | ConvertTo-Html -Fragment -PreContent $htmlHeader | Out-String
 
-# Отправка письма с вложением
+# Sending email
 if ($OutputData) { 
     Send-MailMessage -From $from -To $to -Subject $subject -Body $body -SmtpServer $smtpServer -Encoding utf8 -BodyAsHtml 
 }
